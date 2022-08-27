@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { store } from "../utils/store";
+  import Store from "../utils/store";
 
   import type { Todo, TodoList } from "../utils/types";
   import ListItem from "./components/ListItem.svelte";
@@ -22,9 +22,9 @@
       hoveredItemIndex != null &&
       draggingItemIndex != hoveredItemIndex
     ) {
-      [$store.todos[draggingItemIndex], $store.todos[hoveredItemIndex]] = [
-        $store.todos[hoveredItemIndex],
-        $store.todos[draggingItemIndex],
+      [$Store.todos[draggingItemIndex], $Store.todos[hoveredItemIndex]] = [
+        $Store.todos[hoveredItemIndex],
+        $Store.todos[draggingItemIndex],
       ];
 
       draggingItemIndex = hoveredItemIndex;
@@ -49,7 +49,7 @@
       on:dragstart={(e) => {
         mouseYCoordinate = e.clientY;
         draggingItem = todo;
-        draggingItemIndex = $store.todos.findIndex((t) => t.id === todo.id);
+        draggingItemIndex = $Store.todos.findIndex((t) => t.id === todo.id);
         draggingItemId = todo.id;
 
         distanceTopGrabbedVsPointer =
@@ -60,7 +60,7 @@
       }}
       on:dragover={() => {
         if (hoveredItemId === todo.id) return;
-        hoveredItemIndex = $store.todos.findIndex((t) => t.id === todo.id);
+        hoveredItemIndex = $Store.todos.findIndex((t) => t.id === todo.id);
         hoveredItemId = todo.id;
       }}
       on:dragend={() => {

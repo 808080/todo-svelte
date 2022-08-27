@@ -1,16 +1,16 @@
 <script lang="ts">
-  import { store } from "../utils/store";
+  import Store from "../utils/store";
   import Button from "./components/Button.svelte";
 
   const addItem = () => {
-    if (!$store.newItem) return;
-    store.addTodo($store.newItem);
-    $store.newItem = "";
+    if (!$Store.newItem) return;
+    Store.addTodo($Store.newItem);
+    $Store.newItem = "";
   };
 </script>
 
 <form on:submit|preventDefault={addItem}>
-  <input placeholder="What needs to be done?" bind:value={$store.newItem} />
+  <input placeholder="What needs to be done?" bind:value={$Store.newItem} />
   <Button text="Add" type="submit" />
 </form>
 

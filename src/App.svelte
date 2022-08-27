@@ -2,7 +2,7 @@
   import AddItem from "./lib/AddItem.svelte";
   import Filter from "./lib/Filter.svelte";
   import List from "./lib/List.svelte";
-  import { STORAGE_NAME, store } from "./utils/store";
+  import store, { STORAGE_NAME } from "./utils/store";
   import { type Store, type TodoList, Filters } from "./utils/types";
 
   store.subscribe((store: Store) => {
@@ -17,11 +17,13 @@
     else res = todos;
     return { todos: res, count: res.length };
   };
+
+  $: filteredList = filterList($store.todos);
 </script>
 
 <main>
   <AddItem />
-  <List filteredList={filterList($store.todos)} />
+  <List {filteredList} />
   <Filter />
 </main>
 

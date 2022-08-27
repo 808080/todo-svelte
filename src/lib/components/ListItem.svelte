@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { store } from "../../utils/store";
+  import store from "../../utils/store";
   import type { Todo } from "src/utils/types";
   import Button from "./Button.svelte";
 
